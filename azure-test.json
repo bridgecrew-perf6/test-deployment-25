@@ -1,0 +1,35 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.CognitiveServices/accounts",
+            "apiVersion": "2021-10-01",
+            "name": "test-question-model",
+            "location": "westus",
+            "sku": {
+                "name": "F0"
+            },
+            "kind": "QnAMaker",
+            "properties": {
+                "apiProperties": {
+                    "qnaRuntimeEndpoint": "[concat('https://', test-question-model, '.azurewebsites.net')]"
+                },
+                "customSubDomainName": "test-question-model",
+                "publicNetworkAccess": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.HealthBot/healthBots",
+            "apiVersion": "2021-08-24",
+            "name": "test-healthbot",
+            "location": "eastus",
+            "sku": {
+                "name": "F0"
+            },
+            "properties": {}
+        },
+    ]
+}
